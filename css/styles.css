@@ -138,3 +138,63 @@ body {
 .lightbox__button:focus {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+.right_scroll { 
+  position: absolute;
+  top: 320px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color var(--animation-duration) var(--timing-function);
+  outline: none;
+  background-image: url('../images/right-arrow.svg');
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+
+}
+
+.right_scroll:hover,
+.right_scroll:focus {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.left_scroll { 
+  position: absolute;
+  top: 320px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color var(--animation-duration) var(--timing-function);
+  outline: none;
+  background-image: url('../images/left-arrow.svg');
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+
+}
+
+.left_scroll:hover,
+.left_scroll:focus {
+  background-color: rgba(0, 0, 0, 0.5);
+}

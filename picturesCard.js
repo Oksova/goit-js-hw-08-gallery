@@ -6,6 +6,8 @@ const refs = {
   closeBtn: document.querySelector('[data-action = "close-lightbox"]'),
   overlayEl: document.querySelector('.lightbox__overlay'),
   modalEl: document.querySelector('.js-lightbox'),
+  rightBtn: document.querySelector('[data-action = "next-img"]'),
+  leftBtn: document.querySelector('[data-action = "prev-img"]'),
 };
 
 const picturesContainer = refs.galleryEl;
@@ -17,7 +19,6 @@ picturesContainer.addEventListener('click', onPicturesClick);
 refs.modalEl.addEventListener('click', onBtnCloseClick);
 
 refs.overlayEl.addEventListener('click', onOverlayClick);
-document.addEventListener('keydown', onBtnClickScroll);
 
 function picturesGalleryMarkup(pictures) {
   return pictures
@@ -41,9 +42,12 @@ function picturesGalleryMarkup(pictures) {
 console.log(picturesGalleryMarkup);
 
 function onPicturesClick(event) {
-  console.log('Клик по картинке');
   event.preventDefault();
   document.addEventListener('keydown', onEscKeyBtnPress);
+
+  refs.leftBtn.addEventListener('click', onLeftBtnClick);
+  refs.rightBtn.addEventListener('click', onRightBtnClick);
+  document.addEventListener('click', setActivePicture);
 
   if (event.target.nodeName !== 'IMG') {
     return;
@@ -54,7 +58,6 @@ function onPicturesClick(event) {
 }
 
 function onBtnCloseClick() {
-  console.log('Клик для закрытия картинки');
   document.removeEventListener('keydown', onEscKeyBtnPress);
 
   refs.modalEl.classList.remove('is-open');
@@ -62,7 +65,6 @@ function onBtnCloseClick() {
 }
 
 function onOverlayClick(event) {
-  console.log('Клик overlay');
   if (event.currentTarget === event.target) {
     onBtnCloseClick();
   }
@@ -73,4 +75,32 @@ function onEscKeyBtnPress(event) {
   if (event.code === 'Escape') {
     onBtnCloseClick();
   }
+}
+
+let index = 0;
+setActivePicture(index);
+
+function onLeftBtnClick() {
+  if (index - 1 < 0) {
+    return;
+  }
+
+  index -= 1;
+  setActivePicture(index);
+  console.log('left click');
+}
+
+function onRightBtnClick() {
+  if (index + 1 >= pictures.length) {
+    return;
+  }
+
+  index += 1;
+  setActivePicture(index);
+  console.log('right click');
+}
+
+function setActivePicture(pictureIdx) {
+  const activePicture = pictures[pictureIdx];
+  refs.imageEl.src = activePicture.original;
 }
