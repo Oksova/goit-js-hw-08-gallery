@@ -77,10 +77,10 @@ function onEscKeyBtnPress(event) {
   }
 }
 
-let index = 0;
-setActivePicture(index);
+let currentIndex = 0;
+setActivePicture(currentIndex);
 
-function onLeftBtnClick() {
+function onLeftBtnClick(event) {
   if (index - 1 < 0) {
     return;
   }
@@ -90,13 +90,13 @@ function onLeftBtnClick() {
   console.log('left click');
 }
 
-function onRightBtnClick() {
+function onRightBtnClick(event) {
   if (index + 1 >= pictures.length) {
     return;
   }
 
   index += 1;
-  setActivePicture(index);
+  setActivePicture(currentIndex);
   console.log('right click');
 }
 
