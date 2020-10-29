@@ -33,6 +33,7 @@ function picturesGalleryMarkup(pictures) {
           src= "${preview}" 
           data-source="${original}"
           alt="${description}"
+          
         />
       </a>
     </li>`;
@@ -47,7 +48,6 @@ function onPicturesClick(event) {
 
   refs.leftBtn.addEventListener('click', onLeftBtnClick);
   refs.rightBtn.addEventListener('click', onRightBtnClick);
-  document.addEventListener('click', setActivePicture);
 
   if (event.target.nodeName !== 'IMG') {
     return;
@@ -78,29 +78,30 @@ function onEscKeyBtnPress(event) {
 }
 
 let currentIndex = 0;
+
 setActivePicture(currentIndex);
 
-function onLeftBtnClick(event) {
-  if (index - 1 < 0) {
+function onLeftBtnClick() {
+  if (currentIndex - 1 < 0) {
     return;
   }
 
-  index -= 1;
-  setActivePicture(index);
+  currentIndex -= 1;
+  setActivePicture(currentIndex);
   console.log('left click');
 }
 
-function onRightBtnClick(event) {
-  if (index + 1 >= pictures.length) {
+function onRightBtnClick() {
+  if (currentIndex + 1 >= pictures.length) {
     return;
   }
 
-  index += 1;
+  currentIndex += 1;
   setActivePicture(currentIndex);
   console.log('right click');
 }
 
-function setActivePicture(pictureIdx) {
-  const activePicture = pictures[pictureIdx];
-  refs.imageEl.src = activePicture.original;
+function setActivePicture(pictureCurrentIndex) {
+  const activePicture = pictures[pictureCurrentIndex];
+  refs.imageEl.src = activePicture;
 }
